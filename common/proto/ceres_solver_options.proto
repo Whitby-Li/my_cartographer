@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package my_cartographer.common.proto;
+
+message CeresSolverOptions {
+  // Configure the Ceres solver. See the Ceres documentation for more
+  // information: https://code.google.com/p/ceres-solver/
+  bool use_nonmonotonic_steps = 1;
+  int32 max_num_iterations = 2;
+  int32 num_threads = 3;
+}
