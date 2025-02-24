@@ -15,6 +15,7 @@ set(MY_CARTOGRAPHER_CONFIGURATION_FILES_DIRECTORY ${CMAKE_INSTALL_PREFIX}/share/
   CACHE PATH ".lua configuration files directory")
 
 find_package(absl REQUIRED)
+find_package(Protobuf 3.0.0 REQUIRED)
 set(BOOST_COMPONENTS iostreams)
 if(WIN32)
   list(APPEND BOOST_COMPONENTS zlib)
@@ -33,3 +34,4 @@ include_directories(
 )
 
 add_subdirectory(common)
+add_subdirectory(test)
