@@ -12,6 +12,7 @@
 
 #include <set>
 #include <memory>
+#include <functional>
 
 namespace cartographer
 {

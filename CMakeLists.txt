@@ -4,7 +4,6 @@ project(my_cartographer)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include(${PROJECT_SOURCE_DIR}/cmake/functions.cmake)
 google_initialize_my_cartographer_project()
