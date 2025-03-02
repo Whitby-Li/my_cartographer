@@ -2,7 +2,7 @@
 // Created by whitby on 2025-02-16.
 //
 
-#include "common/thread_pool.h"
+#include "my_cartographer/common/thread_pool.h"
 
 #include <absl/memory/memory.h>
 #include <gtest/gtest.h>
@@ -10,7 +10,7 @@
 #include <vector>
 #include <iostream>
 
-using namespace cartographer::common;
+using namespace my_cartographer::common;
 
 namespace
 {
