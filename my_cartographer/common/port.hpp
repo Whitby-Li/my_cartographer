@@ -2,8 +2,8 @@
 // Created by whitby on 2025-02-03.
 //
 
-#ifndef MY_CARTOGRAPHER_COMMON_PORT_H_
-#define MY_CARTOGRAPHER_COMMON_PORT_H_
+#ifndef MY_CARTOGRAPHER_COMMON_PORT_HPP_
+#define MY_CARTOGRAPHER_COMMON_PORT_HPP_
 
 #include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/iostreams/filter/gzip.hpp>
@@ -60,4 +60,4 @@ namespace my_cartographer
   } // namespace common
 } // namespace my_cartographer
 
-#endif // CARTOGRAPHER_COMMON_PORT_H_
+#endif // CARTOGRAPHER_COMMON_PORT_HPP_

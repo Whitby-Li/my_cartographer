@@ -99,4 +99,4 @@ namespace my_cartographer
     } // namespace sensor
 } // namespace my_cartographer
 
-#endif //MY_CARTOGRAPHER_SENSOR_RANGEFINDER_POINT_HPP
+#endif // MY_CARTOGRAPHER_SENSOR_RANGEFINDER_POINT_HPP

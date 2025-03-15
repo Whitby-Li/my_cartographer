@@ -11,22 +11,22 @@
 
 namespace my_cartographer
 {
-    namespace transform
+  namespace transform
+  {
+    struct TimestampedTransform
     {
-        struct TimestampedTransform
-        {
-            common::Time time;
-            transform::Rigid3d transform;
-        };
+      common::Time time;
+      transform::Rigid3d transform;
+    };
 
-        TimestampedTransform FromProto(const proto::TimestampedTransform &proto);
+    TimestampedTransform FromProto(const proto::TimestampedTransform &proto);
 
-        proto::TimestampedTransform ToProto(const TimestampedTransform &transform);
+    proto::TimestampedTransform ToProto(const TimestampedTransform &transform);
 
-        TimestampedTransform Interpolate(const TimestampedTransform &start,
-                                         const TimestampedTransform &end,
-                                         const common::Time time);
-    } // namespace transform
+    TimestampedTransform Interpolate(const TimestampedTransform &start,
+                                     const TimestampedTransform &end,
+                                     const common::Time time);
+  } // namespace transform
 } // namespace my_cartographer
 
 #endif // MY_CARTOGRAPHER_TRANSFORM_TIMESTAMPED_TRANSFORM_H

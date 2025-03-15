@@ -26,7 +26,7 @@ namespace my_cartographer
 
             PointCloud();
             explicit PointCloud(const std::vector<PointType> &points);
-            PointCloud(std::vector<PointType> points, std::vector<float> intensities);
+            PointCloud(const std::vector<PointType> &points, const std::vector<float> &intensities);
 
             // Returns the number of points in the point cloud.
             size_t size() const;
