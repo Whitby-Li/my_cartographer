@@ -20,7 +20,7 @@ namespace my_cartographer
     namespace
     {
 
-      inline uint16 BoundedFloatToValue(const float float_value, const float lower_bloud, const float upper_bound)
+      inline uint16 BoundedFloatToValue(const float float_value, const float lower_bound, const float upper_bound)
       {
         const int value = common::RoundToInt((common::Clamp(float_value, lower_bound, upper_bound) - lower_bound) * (32766.f / (upper_bound - lower_bound))) + 1;
         // DCHECK for performance

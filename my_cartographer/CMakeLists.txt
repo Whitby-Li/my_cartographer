@@ -20,3 +20,4 @@ include_directories(
 add_subdirectory(common)
 add_subdirectory(transform)
 add_subdirectory(metrics)
+add_subdirectory(sensor)

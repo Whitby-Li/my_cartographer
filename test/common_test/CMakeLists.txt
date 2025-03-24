@@ -1,6 +1,5 @@
 project(common_test)
 
-find_package(absl REQUIRED)
 find_package(GTest REQUIRED)
 
 include_directories(

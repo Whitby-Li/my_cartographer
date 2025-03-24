@@ -23,7 +23,7 @@ namespace my_cartographer
         {
             common::Time time;
             absl::optional<transform::Rigid3d> pose;
-        }
+        };
 
         // Converts 'pose_data' to a proto::FixedFramePoseData.
         proto::FixedFramePoseData ToProto(const FixedFramePoseData& pose_data);

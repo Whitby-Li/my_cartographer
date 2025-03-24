@@ -35,7 +35,7 @@ endforeach()
 aux_source_directory(. COMMON_SRCS)
 message(STATUS "common sources: ${COMMON_SRCS}")
 add_library(${PROJECT_NAME} SHARED ${COMMON_SRCS} ${COMMON_PROTO_SRCS})
-target_link_libraries(${PROJECT_NAME} PUBLIC 
+target_link_libraries(${PROJECT_NAME} PRIVATE 
   glog 
   absl::base
   absl::memory

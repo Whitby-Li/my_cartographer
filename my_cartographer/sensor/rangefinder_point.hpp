@@ -28,7 +28,7 @@ namespace my_cartographer
         // See point_cloud.h for more details.
         struct TimedRangefinderPoint
         {
-            Eigen::Vector3d position;
+            Eigen::Vector3f position;
             float time;
         };
 
@@ -60,9 +60,7 @@ namespace my_cartographer
 
         inline RangefinderPoint FromProto(const proto::RangefinderPoint &rangefinder_point_proto)
         {
-            proto::RangefinderPoint proto;
-            *proto.mutable_position() = transform::ToProto(rangefinder_point.position);
-            return proto;
+          return {transform::ToEigen(rangefinder_point_proto.position())};
         }
 
         inline proto::RangefinderPoint ToProto(const RangefinderPoint &rangefinder_point)

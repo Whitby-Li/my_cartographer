@@ -5,6 +5,11 @@
 #ifndef MY_CARTOGRAPHER_SENSOR_IMU_DATA_H
 #define MY_CARTOGRAPHER_SENSOR_IMU_DATA_H
 
+#include "my_cartographer/common/time.h"
+#include "my_cartographer/sensor/proto/sensor.pb.h"
+
+#include <Eigen/Core>
+
 namespace my_cartographer
 {
   namespace sensor

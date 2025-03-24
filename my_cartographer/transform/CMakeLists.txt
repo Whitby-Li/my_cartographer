@@ -29,7 +29,7 @@ endforeach()
 
 aux_source_directory(. TRANSFORM_SRCS)
 add_library(${PROJECT_NAME} SHARED ${TRANSFORM_SRCS} ${TRANSFORM_PROTO_SRCS})
-target_link_libraries(${PROJECT_NAME} PUBLIC 
-  glog 
-  absl::base
-  absl::strings)
+target_link_libraries(${PROJECT_NAME} 
+  PUBLIC glog absl::base absl::strings
+  PRIVATE common
+)

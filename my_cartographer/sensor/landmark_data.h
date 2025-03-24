@@ -34,5 +34,7 @@ namespace my_cartographer
         // Converts 'proto' to LandmarkData.
         LandmarkData FromProto(const proto::LandmarkData &proto);
         
-    }
-}
+    }  // namespace sensor
+} // namespace my_cartographer
+
+#endif // MY_CARTOGRAPHER_SENSOR_LANDMARK_DATA_H
