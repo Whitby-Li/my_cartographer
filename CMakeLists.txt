@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(my_cartographer)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(${PROJECT_SOURCE_DIR}/cmake/functions.cmake)
@@ -16,7 +16,7 @@ set(MY_CARTOGRAPHER_CONFIGURATION_FILES_DIRECTORY ${CMAKE_INSTALL_PREFIX}/share/
 
 # 基础 C++ 依赖
 find_package(Eigen3 REQUIRED)
-find_package(absl REQUIRED)
+find_package(absl REQUIRED CONFIG)
 find_package(Protobuf 3.0.0 REQUIRED)
 
 include_directories(

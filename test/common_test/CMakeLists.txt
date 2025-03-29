@@ -7,7 +7,7 @@ include_directories(
 )
 
 add_executable(thread_pool_test thread_pool_test.cpp)
-target_link_libraries(thread_pool_test PUBLIC
+target_link_libraries(thread_pool_test PRIVATE
   GTest::GTest
   GTest::Main
   absl::base
