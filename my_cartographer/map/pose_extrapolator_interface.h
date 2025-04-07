@@ -41,10 +41,10 @@ namespace my_cartographer
       virtual ~PoseExtrapolatorInterface() {}
 
       // // TODO: Remove dependency cycle.
-      // static std::unique_ptr<PoseExtrapolatorInterface> CreateWithImuData(
-      //     const proto::PoseExtrapolatorOptions &options,
-      //     const std::vector<sensor::ImuData> &imu_data,
-      //     const std::vector<transform::TimestampedTransform> &initial_poses);
+      static std::unique_ptr<PoseExtrapolatorInterface> CreateWithImuData(
+          const proto::PoseExtrapolatorOptions &options,
+          const std::vector<sensor::ImuData> &imu_data,
+          const std::vector<transform::TimestampedTransform> &initial_poses);
 
       // Return the time of the last added pose or Time::min() if no pose was added yet.
       virtual common::Time GetLastPoseTime() const = 0;

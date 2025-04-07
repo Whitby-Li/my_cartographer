@@ -93,5 +93,6 @@ namespace my_cartographer
       ValueConversionTables conversion_tables_;
     };
     
-  }
-}
+  } // namespace map
+} // namespace my_cartographer
+#endif // MY_CARTOGRAPHER_MAP_2D_SUBMAP_2D_H
