@@ -18,7 +18,7 @@ package my_cartographer.map.proto;
 
 import "my_cartographer/map/proto/motion_filter_options.proto";
 import "my_cartographer/map/proto/pose_extrapolator_options.proto";
-import "cartographer/sensor/proto/adaptive_voxel_filter_options.proto";
+import "my_cartographer/sensor/proto/adaptive_voxel_filter_options.proto";
 import "my_cartographer/map/proto/scan_matching/ceres_scan_matcher_options_2d.proto";
 import "my_cartographer/map/proto/scan_matching/real_time_correlative_scan_matcher_options.proto";
 import "my_cartographer/map/proto/submaps_options_2d.proto";
@@ -53,9 +53,9 @@ message LocalTrajectoryBuilderOptions2D {
   // Whether to solve the online scan matching first using the correlative scan
   // matcher to generate a good starting point for Ceres.
   bool use_online_correlative_scan_matching = 5;
-  cartographer.mapping.scan_matching.proto.RealTimeCorrelativeScanMatcherOptions
+  my_cartographer.map.scan_matching.proto.RealTimeCorrelativeScanMatcherOptions
       real_time_correlative_scan_matcher_options = 7;
-  cartographer.mapping.scan_matching.proto.CeresScanMatcherOptions2D
+  my_cartographer.map.scan_matching.proto.CeresScanMatcherOptions2D
       ceres_scan_matcher_options = 8;
   MotionFilterOptions motion_filter_options = 13;
 
@@ -68,7 +68,7 @@ message LocalTrajectoryBuilderOptions2D {
   // TODO(schwoere,wohe): Remove this constant. This is only used for ROS and
   // was replaced by pose_extrapolator_options.
   double imu_gravity_time_constant = 17;
-  mapping.proto.PoseExtrapolatorOptions pose_extrapolator_options = 21;
+  my_cartographer.map.proto.PoseExtrapolatorOptions pose_extrapolator_options = 21;
 
   SubmapsOptions2D submaps_options = 11;
 

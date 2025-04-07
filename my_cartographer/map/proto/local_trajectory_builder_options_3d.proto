@@ -48,11 +48,11 @@ message LocalTrajectoryBuilderOptions3D {
   // Whether to solve the online scan matching first using the correlative scan
   // matcher to generate a good starting point for Ceres.
   bool use_online_correlative_scan_matching = 13;
-  mapping.scan_matching.proto.RealTimeCorrelativeScanMatcherOptions
+  my_cartographer.map.scan_matching.proto.RealTimeCorrelativeScanMatcherOptions
       real_time_correlative_scan_matcher_options = 14;
-  mapping.scan_matching.proto.CeresScanMatcherOptions3D
+  my_cartographer.map.scan_matching.proto.CeresScanMatcherOptions3D
       ceres_scan_matcher_options = 6;
-  mapping.proto.MotionFilterOptions motion_filter_options = 7;
+  my_cartographer.map.proto.MotionFilterOptions motion_filter_options = 7;
 
   // Time constant in seconds for the orientation moving average based on
   // observed gravity via the IMU. It should be chosen so that the error
@@ -67,7 +67,7 @@ message LocalTrajectoryBuilderOptions3D {
   // Number of histogram buckets for the rotational scan matcher.
   int32 rotational_histogram_size = 17;
 
-  mapping.proto.PoseExtrapolatorOptions pose_extrapolator_options = 18;
+  my_cartographer.map.proto.PoseExtrapolatorOptions pose_extrapolator_options = 18;
 
   repeated transform.proto.TimestampedTransform initial_poses = 19;
   repeated sensor.proto.ImuData initial_imu_data = 20;
