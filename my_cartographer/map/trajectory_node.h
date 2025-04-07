@@ -5,10 +5,10 @@
 #ifndef MY_CARTOGRAPHER_MAP_TRAJECTORY_NODE_H
 #define MY_CARTOGRAPHER_MAP_TRAJECTORY_NODE_H
 
-#include "my_cartographer/common/time.hpp"
+#include "my_cartographer/common/time.h"
 #include "my_cartographer/sensor/range_data.h"
 #include "my_cartographer/transform/rigid_transform.h"
-#include "my_cartographer/map/proto/trajectory_node_data.proto.pb.h"
+#include "my_cartographer/map/proto/trajectory_node_data.pb.h"
 
 #include <absl/types/optional.h>
 #include <Eigen/Core>
@@ -28,7 +28,7 @@ namespace my_cartographer
       {
         common::Time time;
         transform::Rigid3d local_pose;
-      }
+      };
 
       // The nose pose in the global SLAM frame.
       transform::Rigid3d global_pose;
