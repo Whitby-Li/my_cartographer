@@ -19,7 +19,7 @@ package my_cartographer.map.proto;
 import "my_cartographer/sensor/proto/sensor.proto";
 import "my_cartographer/transform/proto/transform.proto";
 
-// Serialized state of a mapping::TrajectoryNode::Data.
+// Serialized state of a map::TrajectoryNode::Data.
 message TrajectoryNodeData {
   int64 timestamp = 1;
   transform.proto.Quaterniond gravity_alignment = 2;

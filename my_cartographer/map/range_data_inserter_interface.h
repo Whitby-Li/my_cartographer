@@ -9,6 +9,9 @@
 #include "my_cartographer/map/proto/submaps_options_2d.pb.h"
 #include "my_cartographer/sensor/range_data.h"
 
+#include <utility>
+#include <vector>
+
 namespace my_cartographer
 {
   namespace map

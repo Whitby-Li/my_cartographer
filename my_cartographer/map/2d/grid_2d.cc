@@ -183,7 +183,7 @@ namespace my_cartographer
     proto::Grid2D Grid2D::ToProto() const
     {
       proto::Grid2D result;
-      *result.mutable_limits() = mapping::ToProto(limits_);
+      *result.mutable_limits() = map::ToProto(limits_);
       *result.mutable_cells() = {correspondence_cost_cells_.begin(),
                                  correspondence_cost_cells_.end()};
       CHECK(update_indices().empty()) << "Serializing a grid during an update is "

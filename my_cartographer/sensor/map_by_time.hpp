@@ -42,8 +42,8 @@ namespace my_cartographer
       // Removes data no longer needed once 'node_id' gets removed from 'nodes'.
       // 'NodeType' must contain a 'time' member of type common::Time.
       template <typename NodeType>
-      void Trim(const mapping::MapById<mapping::NodeId, NodeType> &nodes,
-                const mapping::NodeId &node_id)
+      void Trim(const map::MapById<map::NodeId, NodeType> &nodes,
+                const map::NodeId &node_id)
       {
         const int trajectory_id = node_id.trajectory_id;
         CHECK_GE(trajectory_id, 0);
@@ -197,16 +197,16 @@ namespace my_cartographer
       }
 
       // Returns Range object for range-based loops over the trajectory IDs.
-      mapping::Range<ConstTrajectoryIterator> trajectory_ids() const
+      map::Range<ConstTrajectoryIterator> trajectory_ids() const
       {
-        return mapping::Range<ConstTrajectoryIterator>(
+        return map::Range<ConstTrajectoryIterator>(
             ConstTrajectoryIterator(data_.begin()),
             ConstTrajectoryIterator(data_.end()));
       }
 
-      mapping::Range<ConstIterator> trajectory(const int trajectory_id) const
+      map::Range<ConstIterator> trajectory(const int trajectory_id) const
       {
-        return mapping::Range<ConstIterator>(BeginOfTrajectory(trajectory_id),
+        return map::Range<ConstIterator>(BeginOfTrajectory(trajectory_id),
                                              EndOfTrajectory(trajectory_id));
       }
 
