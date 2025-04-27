@@ -3,8 +3,8 @@
 //
 
 #include "my_cartographer/map/trajectory_builder_interface.h"
-#include "my_cartographer/map/internal/2d/local_trajectory_builder_2d.h"
-#include "my_cartographer/map/internal/3d/local_trajectory_builder_3d.h"
+#include "my_cartographer/map/internal/2d/local_trajectory_builder_options_2d.h"
+#include "my_cartographer/map/internal/3d/local_trajectory_builder_options_3d.h"
 #include "my_cartographer/map/internal/local_slam_result_data.h"
 
 namespace my_cartographer

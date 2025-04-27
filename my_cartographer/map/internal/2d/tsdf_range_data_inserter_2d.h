@@ -12,7 +12,7 @@
 #include "my_cartographer/sensor/point_cloud.h"
 #include "my_cartographer/sensor/range_data.h"
 
-namespace cartographer
+namespace my_cartographer
 {
   namespace map
   {
@@ -46,6 +46,6 @@ namespace cartographer
     };
 
   } // namespace map
-} // namespace cartographer
+} // namespace my_cartographer
 
 #endif // MY_CARTOGRAPHER_MAP_INTERNAL_2D_TSDF_RANGE_DATA_INSERTER_2D_H

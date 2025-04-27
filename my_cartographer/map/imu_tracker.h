@@ -21,11 +21,20 @@ namespace my_cartographer
     public:
       ImuTracker(double imu_gravity_time_constant, common::Time time);
 
-      // Advances to the given 'time' and updates the orientation to reflect this.
+      /**
+       * @brief 旋转运动估计，并更新当前旋转姿态下重力方向
+       */
       void Advance(common::Time time);
 
-      // Updates from an IMU reading (in the IMU frame).
+      /**
+       * @brief 添加 IMU 加速度观测数据，并更新重力方向，并调整旋转估计
+       * @note 最好是用静止或匀速直线运动情况，加速度计数据最接近重力方向
+       */
       void AddImuLinearAccelerationObservation(const Eigen::Vector3d &imu_linear_acceleration);
+
+      /**
+       * @brief 更新 IMU 角速度
+       */
       void AddImuAngularVelocityObservation(const Eigen::Vector3d &imu_angular_velocity);
 
       // Query the current time.

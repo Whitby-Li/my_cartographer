@@ -8,7 +8,7 @@
 
 namespace my_cartographer
 {
-  namespace mapping
+  namespace map
   {
 
     proto::RangeDataInserterOptions CreateRangeDataInserterOptions(
@@ -35,5 +35,5 @@ namespace my_cartographer
                   .get());
       return options;
     }
-  } // namespace mapping
+  } // namespace map
 } // namespace my_cartographer

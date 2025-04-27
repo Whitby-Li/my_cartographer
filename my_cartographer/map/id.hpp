@@ -9,6 +9,19 @@
 #include "my_cartographer/common/time.h"
 #include "my_cartographer/map/proto/pose_graph.pb.h"
 
+#include <absl/memory/memory.h>
+#include <glog/logging.h>
+
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <map>
+#include <memory>
+#include <ostream>
+#include <tuple>
+#include <vector>
+
 namespace my_cartographer
 {
   namespace map

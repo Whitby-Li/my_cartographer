@@ -15,6 +15,11 @@ namespace my_cartographer
       // Number of items that can be queued up before we log which queues are waiting for data.
       const int kMaxQueueSize = 500;
 
+    } // namespace
+
+    inline std::ostream &operator<<(std::ostream &out, const QueueKey &key)
+    {
+      return out << '(' << key.trajectory_id << ", " << key.sensor_id << ')';
     }
 
     OrderedMultiQueue::OrderedMultiQueue() {}

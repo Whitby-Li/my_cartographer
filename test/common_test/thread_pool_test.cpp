@@ -12,7 +12,7 @@
 
 using namespace my_cartographer::common;
 
-namespace
+namespace test
 {
 
   class Receiver

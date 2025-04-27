@@ -100,7 +100,7 @@ namespace my_cartographer
       // Allows to directly add local SLAM results to the 'PoseGraph'. Note that it
       // is invalid to add local SLAM results for a trajectory that has a
       // 'LocalTrajectoryBuilder2D/3D'.
-      virtual void AddLocalSlamResultData( std::unique_ptr<mapping::LocalSlamResultData> local_slam_result_data) = 0;
+      virtual void AddLocalSlamResultData( std::unique_ptr<LocalSlamResultData> local_slam_result_data) = 0;
     };
 
     proto::SensorId ToProto(const TrajectoryBuilderInterface::SensorId &sensor_id);
