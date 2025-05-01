@@ -85,6 +85,7 @@ namespace my_cartographer
       // away CPU resources from more important foreground threads.
       CHECK_NE(nice(10), -1);
 #endif
+      // 运行前置条件
       const auto predicate = [this]() EXCLUSIVE_LOCKS_REQUIRED(mutex_)
       {
         return !task_queue_.empty() || !running_;
@@ -107,7 +108,7 @@ namespace my_cartographer
         }
         CHECK(task);
         CHECK_EQ(task->GetState(), common::Task::DEPENDENCIES_COMPLETED);
-        Execute(task.get());
+        Execute(task.get());  // 运行任务
       }
     }
   }

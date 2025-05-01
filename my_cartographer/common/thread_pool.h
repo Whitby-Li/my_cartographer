@@ -28,15 +28,31 @@ namespace my_cartographer
     public:
       ThreadPoolInterface() {}
       virtual ~ThreadPoolInterface() {}
+
+      /**
+       * @brief 将 task 放入线程池等待队列中，且将 task 关联线程池
+       * @return task 弱智能指针，若对应任务已完成，则会提前释放，可通过 nullptr 来进行判断
+       */
       virtual std::weak_ptr<Task> Schedule(std::unique_ptr<Task> task) = 0;
 
     protected:
+      /**
+       * @brief 运行 task 任务
+       */
       void Execute(Task *task);
+
+      /**
+       * @brief 将 task 关联该线程池，若 task 状态切换为 DEPENDENCIES_COMPLETED，主动放入线程池任务队列
+       */
       void SetThreadPool(Task *task);
 
     private:
       friend class Task;
 
+      /**
+       * @brief 将 task 从等待队列中移入执行队列中
+       * @note task 依赖任务完成后，主动调用
+       */
       virtual void NotifyDependenciesCompleted(Task *task) = 0;
     };
 
@@ -55,8 +71,6 @@ namespace my_cartographer
       ThreadPool(const ThreadPool &) = delete;
       ThreadPool &operator=(const ThreadPool &) = delete;
 
-      // When the returned weak pointer is expired, 'task' has certainly completed,
-      // so dependants no longer need to add it as a dependency.
       std::weak_ptr<Task> Schedule(std::unique_ptr<Task> task)
           LOCKS_EXCLUDED(mutex_) override;
 
@@ -66,11 +80,11 @@ namespace my_cartographer
       void NotifyDependenciesCompleted(Task *task) LOCKS_EXCLUDED(mutex_) override;
 
       absl::Mutex mutex_;
-      bool running_ GUARDED_BY(mutex_) = true;
-      std::vector<std::thread> pool_ GUARDED_BY(mutex_);
-      std::deque<std::shared_ptr<Task>> task_queue_ GUARDED_BY(mutex_);
+      bool running_ GUARDED_BY(mutex_) = true;  // 线程开启标记
+      std::vector<std::thread> pool_ GUARDED_BY(mutex_);  // 线程数组
+      std::deque<std::shared_ptr<Task>> task_queue_ GUARDED_BY(mutex_); // 执行队列
       absl::flat_hash_map<Task *, std::shared_ptr<Task>> tasks_not_ready_
-          GUARDED_BY(mutex_);
+          GUARDED_BY(mutex_); // 等待队列
     };
 
   } // namespace common
