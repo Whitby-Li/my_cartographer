@@ -6,7 +6,7 @@
 
 namespace my_cartographer
 {
-  namespace map
+  namespace sensor
   {
 
     namespace

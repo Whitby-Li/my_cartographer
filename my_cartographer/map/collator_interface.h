@@ -5,7 +5,7 @@
 #ifndef MY_CARTOGRAPHER_MAP_COLLATOR_INTERFACE_H
 #define MY_CARTOGRAPHER_MAP_COLLATOR_INTERFACE_H
 
-#include "my_cartographer/map/data.h"
+#include "my_cartographer/sensor/data.h"
 
 #include <absl/container/flat_hash_set.h>
 #include <absl/types/optional.h>
@@ -16,7 +16,7 @@
 
 namespace my_cartographer
 {
-  namespace map
+  namespace sensor
   {
     class CollatorInterface
     {

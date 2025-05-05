@@ -6,7 +6,7 @@
 #define MY_CARTOGRAPHER_MAP_COLLATOR_H
 
 #include "my_cartographer/map/collator_interface.h"
-#include "my_cartographer/map/data.h"
+#include "my_cartographer/sensor/data.h"
 #include "my_cartographer/map/ordered_multi_queue.h"
 
 #include <absl/container/flat_hash_map.h>
@@ -18,7 +18,7 @@
 
 namespace my_cartographer
 {
-  namespace map
+  namespace sensor
   {
 
     class Collator : public CollatorInterface
@@ -50,7 +50,7 @@ namespace my_cartographer
       absl::flat_hash_map<int, std::vector<QueueKey>> queue_keys_;
     };
 
-  } // namespace map
+  } // namespace sesnor
 } // namespace my_cartographer
 
 #endif // MY_CARTOGRAPHER_MAP_COLLATOR_H

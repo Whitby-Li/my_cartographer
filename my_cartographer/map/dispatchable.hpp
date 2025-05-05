@@ -6,11 +6,11 @@
 #define MY_CARTOGRAPHER_MAP_DISPATCHABLE_HPP
 
 #include "my_cartographer/map/trajectory_builder_interface.h"
-#include "my_cartographer/map/data.h"
+#include "my_cartographer/sensor/data.h"
 
 namespace my_cartographer
 {
-  namespace map
+  namespace sensor
   {
 
     template <typename DataType>
@@ -39,7 +39,7 @@ namespace my_cartographer
       return absl::make_unique<Dispatchable<DataType>>(sensor_id, data);
     }
 
-  } // namespace map
+  } // namespace sensor
 } // namespace my_cartographer
 
 #endif // MY_CARTOGRAPHER_MAP_DISPATCHABLE_HPP

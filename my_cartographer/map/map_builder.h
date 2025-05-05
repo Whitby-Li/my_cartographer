@@ -11,7 +11,7 @@
 #include "my_cartographer/map/map_builder_interface.h"
 #include "my_cartographer/map/pose_graph.h"
 #include "my_cartographer/map/proto/map_builder_options.pb.h"
-#include "my_cartographer/sensor/collator_interface.h"
+#include "my_cartographer/map/collator_interface.h"
 
 namespace my_cartographer
 {

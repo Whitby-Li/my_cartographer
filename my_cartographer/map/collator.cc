@@ -6,7 +6,7 @@
 
 namespace my_cartographer
 {
-  namespace map
+  namespace sensor
   {
 
     void Collator::AddTrajectory(
@@ -47,5 +47,5 @@ namespace my_cartographer
       return absl::optional<int>(queue_.GetBlocker().trajectory_id);
     }
 
-  } // namespace map
+  } // namespace sensor
 } // namespace my_cartographer

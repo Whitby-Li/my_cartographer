@@ -14,7 +14,7 @@
 
 namespace my_cartographer
 {
-  namespace map
+  namespace sensor
   {
 
     // Waits to see at least one data item for all sensor ids and dispatches data

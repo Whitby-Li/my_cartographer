@@ -228,7 +228,7 @@ namespace my_cartographer
         map::MapById<map::NodeId, map::proto::Node> &node_id_to_node,
         const map::proto::PoseGraph &pose_graph_proto)
     {
-      using namespace mapping;
+      using namespace map;
       if (submap_id_to_submap.empty() ||
           submap_id_to_submap.begin()->data.has_submap_2d())
       {

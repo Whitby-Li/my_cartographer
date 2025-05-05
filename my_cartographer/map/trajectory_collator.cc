@@ -8,7 +8,7 @@
 
 namespace my_cartographer
 {
-  namespace map
+  namespace sensor
   {
 
     metrics::Family<metrics::Counter> *

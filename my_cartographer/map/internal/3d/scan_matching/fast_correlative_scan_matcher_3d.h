@@ -9,7 +9,7 @@
 #include "my_cartographer/map/3d/hybrid_grid.hpp"
 #include "my_cartographer/map/internal/2d/scan_matching/fast_correlative_scan_matcher_2d.h"
 #include "my_cartographer/map/internal/3d/scan_matching/precomputation_grid_3d.h"
-#include "my_cartographer/map/internal/3d/scan_matching/rotation_scan_matcher.h"
+#include "my_cartographer/map/internal/3d/scan_matching/rotational_scan_matcher.h"
 #include "my_cartographer/map/proto/scan_matching/fast_correlative_scan_matcher_options_3d.pb.h"
 #include "my_cartographer/map/trajectory_node.h"
 #include "my_cartographer/sensor/point_cloud.h"

@@ -1,15 +1,6 @@
 @startuml ThreadPoolDiagram
 skinparam classAttributeIconSize 0
 
-' 任务状态
-enum State {
-  NEW,
-  DISPATCHED,
-  DEPENDENCIES_COMPLETED,
-  RUNNING,
-  COMPLETED
-}
-
 ' 任务
 class Task
 {
@@ -25,6 +16,42 @@ class Task
   thread_pool_to_notify : ThreadPoolInterface
   uncompleted_denpendencies : size_t
   dependent_tasks : set<Task*>
+  -state : State
 }
+
+' 任务状态
+enum "Task::State" as State {
+  NEW,
+  DISPATCHED,
+  DEPENDENCIES_COMPLETED,
+  RUNNING,
+  COMPLETED
+}
+
+'线程池接口
+class ThreadPoolInterface
+{
+  +Schedule(task)
+  -Execute(task)
+  -SetThreadPool(task)
+  NotifyDependenciesCompleted(task)
+}
+
+'线程池
+class ThreadPool
+{
+  ThreadPool(num_thread)
+  -DoWork()
+
+  -pool_threads
+  -wait_task_queue
+  -running_task_queue
+  -is_running
+}
+
+Task --> State : inner enum
+Task --> ThreadPoolInterface : 1
+ThreadPool --|>ThreadPoolInterface
+ThreadPool --> "*" Task : many
 
 @enduml
