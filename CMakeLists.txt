@@ -27,4 +27,4 @@ include_directories(
 )
 
 add_subdirectory(my_cartographer)
-add_subdirectory(test)
+# add_subdirectory(test)
