@@ -33,3 +33,11 @@ target_link_libraries(${PROJECT_NAME}
   PUBLIC glog absl::base absl::strings
   PRIVATE common transform
 )
+
+# 安装配置
+install(TARGETS ${PROJECT_NAME}
+  EXPORT my_cartographerTargets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)

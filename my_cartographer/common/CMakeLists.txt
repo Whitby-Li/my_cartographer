@@ -47,3 +47,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   ${Protobuf_LIBRARIES}
   ${CERES_LIBRARIES} 
   ${Boost_LIBRARIES})
+
+# 安装配置
+install(TARGETS ${PROJECT_NAME}
+  EXPORT my_cartographerTargets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+

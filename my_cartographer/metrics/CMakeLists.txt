@@ -5,3 +5,11 @@ add_library(${PROJECT_NAME} SHARED ${METRICS_SRCS})
 target_link_libraries(${PROJECT_NAME} PUBLIC 
   glog 
 )
+
+# 安装配置
+install(TARGETS ${PROJECT_NAME}
+  EXPORT my_cartographerTargets
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
