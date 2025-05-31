@@ -51,6 +51,8 @@ namespace my_cartographer
           parameter_dictionary->GetDictionary("constant_velocity").get());
       *options.mutable_imu_based() = CreateImuBasedPoseExtrapolatorOptions(
           parameter_dictionary->GetDictionary("imu_based").get());
+      
+      return options;
     }
 
     // std::unique_ptr<PoseExtrapolatorInterface> PoseExtrapolatorInterface::CreateWithImuData(

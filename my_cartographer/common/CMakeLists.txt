@@ -35,7 +35,8 @@ endforeach()
 aux_source_directory(. COMMON_SRCS)
 message(STATUS "common sources: ${COMMON_SRCS}")
 add_library(${PROJECT_NAME} SHARED ${COMMON_SRCS} ${COMMON_PROTO_SRCS})
-target_link_libraries(${PROJECT_NAME} PRIVATE 
+target_link_libraries(${PROJECT_NAME} 
+PUBLIC 
   glog 
   absl::base
   absl::memory
@@ -45,8 +46,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   absl::raw_hash_set
   ${LUA_LIBRARIES}
   ${Protobuf_LIBRARIES}
-  ${CERES_LIBRARIES} 
-  ${Boost_LIBRARIES})
+  ${Boost_LIBRARIES}
+PRIVATE 
+  ${CERES_LIBRARIES}   
+)
 
 # 安装配置
 install(TARGETS ${PROJECT_NAME}
@@ -56,3 +59,6 @@ install(TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
 )
 
+install(FILES ${COMMON_PROTO_HDRS}
+  DESTINATION include/my_cartographer/common/proto
+)

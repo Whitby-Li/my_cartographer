@@ -1,0 +1,7 @@
+@PACKAGE_INIT@
+
+# 设置头文件路径变量
+set(my_cartographer_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+# 加载导出的 targets
+include("${CMAKE_CURRENT_LIST_DIR}/my_cartographerTargets.cmake")

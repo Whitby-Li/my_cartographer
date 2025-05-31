@@ -41,3 +41,7 @@ install(TARGETS ${PROJECT_NAME}
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
 )
+
+install(FILES ${MAP_PROTOS_HDRS}
+  DESTINATION include/my_cartographer/map/proto
+)

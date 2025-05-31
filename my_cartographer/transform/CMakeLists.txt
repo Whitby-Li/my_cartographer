@@ -41,3 +41,7 @@ install(TARGETS ${PROJECT_NAME}
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
 )
+
+install(FILES ${TRANSFORM_PROTO_HDRS}
+  DESTINATION include/my_cartographer/transform/proto
+)

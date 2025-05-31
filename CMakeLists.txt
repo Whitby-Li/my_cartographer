@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(my_cartographer)
+set(PROJECT_VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -56,5 +57,29 @@ install(
 install(EXPORT my_cartographerTargets
   FILE my_cartographerTargets.cmake
   NAMESPACE my_cartographer::
+  DESTINATION lib/cmake/my_cartographer
+)
+
+set(PACKAGE_INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include")
+
+# 生成配置文件
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/my_cartographerConfigVersion.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY AnyNewerVersion
+)
+
+configure_package_config_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/my_cartographerConfig.cmake"
+  INSTALL_DESTINATION lib/cmake/my_cartographer
+  PATH_VARS PACKAGE_INCLUDE_INSTALL_DIR
+)
+
+install(FILES
+  "${CMAKE_CURRENT_BINARY_DIR}/my_cartographerConfig.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/my_cartographerConfigVersion.cmake"
   DESTINATION lib/cmake/my_cartographer
 )
