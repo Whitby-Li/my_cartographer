@@ -30,7 +30,7 @@ endforeach()
 aux_source_directory(. MAP_SRCS)
 add_library(${PROJECT_NAME} SHARED ${MAP_SRCS} ${MAP_PROTOS_SRCS})
 target_link_libraries(${PROJECT_NAME} 
-  PUBLIC glog absl::base absl::strings
+  PUBLIC my_cartographer_dependencies
   PRIVATE common transform sensor
 )
 
@@ -42,6 +42,7 @@ install(TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
 )
 
-install(FILES ${MAP_PROTOS_HDRS}
+install(
+  DIRECTORY ${MY_CARTOGRAPHER_BINARY_DIR}/my_cartographer/map/proto/
   DESTINATION include/my_cartographer/map/proto
 )

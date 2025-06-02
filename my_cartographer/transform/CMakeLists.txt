@@ -1,5 +1,7 @@
 project(transform)
 
+
+
 file(GLOB_RECURSE TRANSFORM_PROTOS "proto/*.proto")
 
 foreach(ABS_FIL ${TRANSFORM_PROTOS})
@@ -30,7 +32,7 @@ endforeach()
 aux_source_directory(. TRANSFORM_SRCS)
 add_library(${PROJECT_NAME} SHARED ${TRANSFORM_SRCS} ${TRANSFORM_PROTO_SRCS})
 target_link_libraries(${PROJECT_NAME} 
-  PUBLIC glog absl::base absl::strings
+  PUBLIC my_cartographer_dependencies
   PRIVATE common
 )
 

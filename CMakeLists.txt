@@ -22,7 +22,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # 基础 C++ 依赖
 find_package(Eigen3 REQUIRED)
-find_package(absl REQUIRED CONFIG)
+find_package(absl REQUIRED COMPONENTS base strings time memory synchronization)
 find_package(Protobuf 3.0.0 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS iostreams)
 find_package(Ceres REQUIRED COMPONENTS SuiteSparse)
@@ -31,12 +31,42 @@ find_package(LuaGoogle REQUIRED)
 include_directories(
   ${MY_CARTOGRAPHER_SOURCE_DIR}
   ${MY_CARTOGRAPHER_BINARY_DIR}
+)
+
+add_library(my_cartographer_dependencies INTERFACE)
+target_include_directories(my_cartographer_dependencies INTERFACE
   ${EIGEN3_INCLUDE_DIR}
   ${CERES_INCLUDE_DIRS}
   ${LUA_INCLUDE_DIR}
   ${Boost_INCLUDE_DIRS}
   ${PROTOBUF_INCLUDE_DIRS}
 )
+target_link_libraries(my_cartographer_dependencies INTERFACE
+  absl::base
+  absl::strings
+  absl::time
+  absl::synchronization
+  absl::memory
+  Eigen3::Eigen
+  Boost::iostreams
+  ${LUA_LIBRARIES}
+  ${CERES_LIBRARIES}
+  ${PROTOBUF_LIBRARIES}
+)
+install(TARGETS my_cartographer_dependencies
+  EXPORT my_cartographerTargets
+)
+
+
+message(STATUS "Eigen3 include dir: ${EIGEN3_INCLUDE_DIR}")
+message(STATUS "Ceres include dir: ${CERES_INCLUDE_DIRS}")
+message(STATUS "Lua include dir: ${LUA_INCLUDE_DIR}")
+message(STATUS "Boost include dir: ${Boost_INCLUDE_DIRS}")
+message(STATUS "Protobuf include dir: ${PROTOBUF_INCLUDE_DIRS}")
+
+message(STATUS "Lua Libraries: ${LUA_LIBRARIES}")
+message(STATUS "Ceres Libraries: ${CERES_LIBRARIES}")
+message(STATUS "Boost Libraries: ${Boost_LIBRARIES}")
 
 add_subdirectory(my_cartographer/common)
 add_subdirectory(my_cartographer/transform)

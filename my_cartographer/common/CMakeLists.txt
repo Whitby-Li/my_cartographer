@@ -35,21 +35,7 @@ endforeach()
 aux_source_directory(. COMMON_SRCS)
 message(STATUS "common sources: ${COMMON_SRCS}")
 add_library(${PROJECT_NAME} SHARED ${COMMON_SRCS} ${COMMON_PROTO_SRCS})
-target_link_libraries(${PROJECT_NAME} 
-PUBLIC 
-  glog 
-  absl::base
-  absl::memory
-  absl::str_format
-  absl::strings
-  absl::hash
-  absl::raw_hash_set
-  ${LUA_LIBRARIES}
-  ${Protobuf_LIBRARIES}
-  ${Boost_LIBRARIES}
-PRIVATE 
-  ${CERES_LIBRARIES}   
-)
+target_link_libraries(${PROJECT_NAME} PUBLIC my_cartographer_dependencies)
 
 # 安装配置
 install(TARGETS ${PROJECT_NAME}

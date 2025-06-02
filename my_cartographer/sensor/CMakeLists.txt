@@ -30,7 +30,7 @@ endforeach()
 aux_source_directory(. SENSOR_SRCS)
 add_library(${PROJECT_NAME} SHARED ${SENSOR_SRCS} ${SENSOR_PROTOS_SRCS})
 target_link_libraries(${PROJECT_NAME} 
-  PUBLIC glog absl::base absl::strings
+  PUBLIC my_cartographer_dependencies
   PRIVATE common transform
 )
 
