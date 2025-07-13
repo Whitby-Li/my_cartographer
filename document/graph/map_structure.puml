@@ -1,0 +1,228 @@
+@startuml MapStructureDiagram
+skinparam classAttributeIconSize 0
+
+' ID structure
+struct NodeId
+{
+  +trajectory_id : int
+  +node_index : int
+}
+
+struct SubmapId
+{
+  +trajectory_id : int
+  +submap_index : int
+}
+
+class "MapById<IdType, DataType>" <<template>>
+{
+  -trajectories_ : map<int, MapByIndex>
+}
+
+struct "MapById::MapByIndex" <<nested>>
+{
+  +data : map<int, DataType>
+  +next_index : int
+}
+"MapById<IdType, DataType>" *-- "MapById::MapByIndex" : private
+
+' Pose data structure
+struct ConstantPoseData 
+{
+  +time: Time
+  +local_pose: Rigid3d
+}
+
+struct TrajectoryNodePose 
+{
+  +global_pose: Rigid3d
+  +constant_pose_data: ConstantPoseData
+}
+
+TrajectoryNodePose *-- "1" ConstantPoseData : has
+
+struct Data
+{
+  +time : Time
+  +gravity_alignment : Quaterniond
+  +filtered_gravity_aligned_point_cloud : PointCloud
+  +local_pose : Rigid3d
+}
+
+struct TrajectoryNode
+{
+  +constant_data : Data
+  +global_pose : Rigid3d
+}
+
+TrajectoryNode *-- "1" Data : has
+
+'Submap
+class Submap
+{
+  +Submap(local_submap_pose : Rigid3d)
+  ' +local_pose() : Rigid3d
+  ' +num_range_data() : int
+  ' +set_num_range_data(num_range_data : int)
+  ' +insertion_finished() : bool
+  ' +set_insertion_finished(insertion_finished : bool)
+  
+  -local_pose : Rigid3d
+  -num_range_data : int
+  -insertion_finished : bool
+}
+
+class Submap2D
+{
+  +Submap2D(origin : Vector2f, grid : Grid2D*, conversion_tables : ValueConversionTables*)
+  ' +grid() : const Grid2D*
+  ' +InsertRangeData(range_data : const RangeData&, range_data_inserter : const RangeDataInserterInterface*)
+  ' +Finish()
+
+  -grid_ : unique_ptr<Grid2D>
+  -conversion_tables_ : ValueConversionTables*
+}
+
+Submap <|-- Submap2D
+
+class ActiveSubmap2D
+{
+  +ActiveSubmap2D(options : const SubmapOptions2D&)
+  ' +InsertRangeData(range_data : const RangeData&) : vector<shared_ptr<const Submap2D>>
+  ' +submaps() : vector<shared_ptr<const Submap2D>>
+
+  ' -CreateRangeDataInserter() : unique_ptr<RangeDataInserterInterface>
+  ' -CreateGrid() : unique_ptr<GridInterface>
+  ' -FinishSubmap()
+  ' -AddSubmap(origin : Vector2f)
+  -options_ : const SubmapOptions2D
+  -submaps_ : vector<shared_ptr<const Submap2D>>
+  -range_data_inserter_ : unique_ptr<RangeDataInserterInterface>
+  -conversion_tables_ : ValueConversionTables
+}
+
+ActiveSubmap2D o-- "n" Submap2D : has
+
+
+' Pose graph structure
+
+enum Tag
+{
+  INTRA_SUBMAP
+  INTER_SUBMAP
+}
+
+struct Pose
+{
+  zbar_ij : Rigid3d
+  translation_weight : double
+  rotation_weight : double
+}
+
+struct Constraint
+{
+  submap_id : SubmapId
+  node_id : NodeId
+  pose : Pose
+}
+Constraint *-- "1" SubmapId : has
+Constraint *-- "1" NodeId : has
+Constraint *-- "1" Pose : has
+
+struct LandmarkObservation
+{
+  trajectory_id : int
+  time : Time
+  landmark_to_tracking_transform : Rigid3d
+  translation_weight : double
+  rotation_weight : double
+}
+
+struct LandmarkNode
+{
+  landmark_observations : vector<LandmarkObservation>
+  global_landmark_pose : Rigid3d
+  frozen : bool
+}
+LandmarkNode *-- "n" LandmarkObservation : has
+
+struct SubmapPose
+{
+  version : int
+  pose : Rigid3d
+}
+
+struct SubmapData
+{
+  submap : shared_ptr<const Submap>
+  pose : Rigid3d
+}
+SubmapData o-- "1" Submap : has
+
+struct TrajectoryData
+{
+  gravity_constant = 9.8 : double
+  imu_calibration : array<double, 4>
+  fixed_frame_origin_in_map : Rigid3d
+}
+
+enum TrajectoryState
+{
+  ACTIVE
+  FINISHED
+  FROZEN
+  DELETED
+}
+
+class PoseGraphInterface
+{
+
+}
+
+enum SubmapState
+{
+  kNoConstraintSearch
+  kFinished
+}
+
+enum DeletionState
+{
+  NORMAL
+  SCHEDULED_FOR_DELETION
+  WAIT_FOR_DELETION
+}
+
+struct InternalTrajectoryState
+{
+  state : TrajectoryState
+  deletion_state : DeletionState
+}
+InternalTrajectoryState *-- "1" TrajectoryState : has
+InternalTrajectoryState *-- "1" DeletionState : has
+
+struct InternalSubmapData
+{
+  submap : shared_ptr<const Submap>
+  state : SubmapState
+  node_ids : set<NodeId>
+}
+InternalSubmapData o-- "1" Submap : has
+InternalSubmapData *-- "1" SubmapState : has
+InternalSubmapData *-- "n" NodeId : has
+
+
+struct PoseGraphData
+{
+  submap_data : MapById<SubmapId, InternalSubmapData>
+  global_submap_poses_2d : MapById<SubmapId, SubmapSpec2D>
+  trajectory_nodes : MapById<NodeId, TrajectoryNode>
+  landmark_nodes : MapById<string, LandmarkNode>
+
+  trajectory_connectiviey_state : TrajectoryConnectivityState
+  num_trajectory_nodes : int
+  trajectory_states : map<int, InternalTrajectoryState>
+  initial_trajectory_poses : map<int, InitialTrajectoryPose>
+  constraints : vector<Constraint>
+}
+
+@enduml
